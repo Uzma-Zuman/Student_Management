@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-
+from typing import List
 # Student
 class Student(BaseModel):
     id: int

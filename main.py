@@ -1,14 +1,23 @@
 from fastapi import FastAPI
 import models
 import schemas
+from typing import List
 
 app = FastAPI()
+from fastapi.middleware.cors import CORSMiddleware
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # ================= STUDENTS =================
 
-@app.post("/students")
-def create_student(student: schemas.Student):
-    return models.add_student(student)
+@app.post("/students/bulk")
+def create_students(students: List[schemas.Student]):
+    return models.add_multiple_students(students)
 
 @app.get("/students")
 def read_students():
@@ -25,9 +34,9 @@ def delete_student(student_id: int):
 
 # ================= COURSES =================
 
-@app.post("/courses")
-def create_course(course: schemas.Course):
-    return models.add_course(course)
+@app.post("/courses/bulk")
+def create_courses(courses: List[schemas.Course]):
+    return models.add_multiple_courses(courses)
 
 @app.get("/courses")
 def read_courses():
@@ -44,9 +53,9 @@ def delete_course(course_id: int):
 
 # ================= ENROLLMENT =================
 
-@app.post("/enroll")
-def enroll(data: schemas.Enrollment):
-    return models.enroll_student(data)
+@app.post("/enroll/bulk")
+def enroll_bulk(data: List[schemas.Enrollment]):
+    return models.enroll_multiple(data)
 
 @app.get("/students/{student_id}/courses")
 def student_courses(student_id: int):
@@ -55,3 +64,7 @@ def student_courses(student_id: int):
 @app.get("/courses/{course_id}/students")
 def course_students(course_id: int):
     return models.get_course_students(course_id)
+
+@app.get("/enrollments")
+def get_all_enrollments():
+    return models.get_all_enrollments()
