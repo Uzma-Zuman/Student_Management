@@ -26,20 +26,11 @@ enrollments_collection = db["enrollments"]
 
 # ================= INDEXES =================
 
-students_collection.create_index(
-    "id",
-    unique=True
-)
+students_collection.create_index("id", unique=True)
 
-courses_collection.create_index(
-    "id",
-    unique=True
-)
+courses_collection.create_index("id", unique=True)
 
 enrollments_collection.create_index(
-    [
-        ("student_id", 1),
-        ("course_id", 1)
-    ],
+    [("student_id", 1), ("course_id", 1)],
     unique=True
 )
