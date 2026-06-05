@@ -1,0 +1,36 @@
+{
+    "students": [
+        {
+            "id": 1,
+            "name": "Ali",
+            "age": 20
+        },
+        {
+            "id": 2,
+            "name": "Sara",
+            "age": 22
+        }
+    ],
+    "courses": [
+        {
+            "id": 1,
+            "title": "Flutter",
+            "teacher": "Uzma"
+        },
+        {
+            "id": 2,
+            "title": "Python",
+            "teacher": "Ahmed"
+        }
+    ],
+    "enrollments": [
+        {
+            "student_id": 1,
+            "course_id": 1
+        },
+        {
+            "student_id": 2,
+            "course_id": 2
+        }
+    ]
+}
